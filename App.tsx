@@ -54,7 +54,7 @@ const App = () => {
 
   const filterData = () => {
     let filtered = data;
-    if (status) {
+    if (status != 'a') {
       filtered = filtered.filter(character => character.status.toLowerCase() === status.toLowerCase());
     }
     if (location) {
@@ -76,11 +76,11 @@ const App = () => {
       <Image source={{ uri: item.image }} style={styles.image} />
       <View style={styles.textContainer}>
         <Text style={styles.title}>{item.name}</Text>
-        <Text>Status: {item.status}</Text>
-        <Text>Species: {item.species}</Text>
-        <Text>Gender: {item.gender}</Text>
-        <Text>Last Known Location: {item.location.name}</Text>
-        <Text>First Seen In: {item.episode[0]}</Text>
+        <Text style={styles.text}>Status: {item.status}</Text>
+        <Text style={styles.text}>Species: {item.species}</Text>
+        <Text style={styles.text}>Gender: {item.gender}</Text>
+        <Text style={styles.text}>Last Known Location: {item.location.name}</Text>
+        <Text style={styles.text}>First Seen In: {item.episode[0]}</Text>
       </View>
     </View>
   );
@@ -92,7 +92,7 @@ const App = () => {
           selectedValue={status}
           style={styles.picker}
           onValueChange={(itemValue: string) => setStatus(itemValue)}>
-          <Picker.Item label="All" value="" />
+          <Picker.Item label="All" value="a"/>
           <Picker.Item label="Alive" value="Alive" />
           <Picker.Item label="Dead" value="Dead" />
           <Picker.Item label="Unknown" value="unknown" />
@@ -116,6 +116,7 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#202329",
   },
   filterContainer: {
     flexDirection: 'row',
@@ -125,14 +126,16 @@ const styles = StyleSheet.create({
   picker: {
     height: 50,
     width: 150,
+    backgroundColor:'#ffffff'
   },
   input: {
-    height: 50,
+    height: 54,
     borderColor: 'gray',
     borderWidth: 1,
     padding: 10,
     flex: 1,
     marginLeft: 10,
+    backgroundColor:'#ffffff'
   },
   indicator: {
     flex: 1,
@@ -141,7 +144,7 @@ const styles = StyleSheet.create({
   },
   item: {
     flexDirection: "row",
-    backgroundColor: "#f9c2ff",
+    backgroundColor: "#272b33",
     padding: 10,
     marginVertical: 8,
     marginHorizontal: 16,
@@ -156,9 +159,13 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     justifyContent: 'center',
   },
+  text:{
+    color:'#ffffff',
+  },
   title: {
     fontSize: 18,
     fontWeight: 'bold',
+    color:'gray'
   },
 });
 
